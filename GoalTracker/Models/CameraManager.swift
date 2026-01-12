@@ -49,7 +49,7 @@ final class CameraManager: ObservableObject {
             }
 
             // Input: back wide angle camera
-            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
                 return
             }
 
