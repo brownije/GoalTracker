@@ -72,11 +72,20 @@ final class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDele
             defer { session.commitConfiguration() }
             
             localConfigurationError = nil
-            session.sessionPreset = .photo
 
-            // Preset: choose a reasonable quality for multi-cam
-            if session.canSetSessionPreset(.high) {
-                session.sessionPreset = .high
+            // Configure session preset depending on session type
+            if let multi = session as? AVCaptureMultiCamSession {
+                // AVCaptureMultiCamSession does NOT support .photo preset
+                if multi.canSetSessionPreset(.high) {
+                    multi.sessionPreset = .high
+                }
+            } else {
+                // Regular AVCaptureSession: prefer .photo, else fall back to .high
+                if session.canSetSessionPreset(.photo) {
+                    session.sessionPreset = .photo
+                } else if session.canSetSessionPreset(.high) {
+                    session.sessionPreset = .high
+                }
             }
 
             // Discover devices
@@ -110,12 +119,7 @@ final class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDele
                 // Outputs
                 let backOut = AVCapturePhotoOutput()
                 let frontOut = AVCapturePhotoOutput()
-                if #available(iOS 16.0, *) {
-                    // 12MP typical max for many iPhones; system will clamp as needed per device
-                    backOut.maxPhotoDimensions = CMVideoDimensions(width: 4032, height: 3024)
-                    frontOut.maxPhotoDimensions = CMVideoDimensions(width: 4032, height: 3024)
-                }
-
+                
                 if multi.canAddOutput(backOut) { multi.addOutput(backOut); newBackPhotoOutput = backOut }
                 if multi.canAddOutput(frontOut) { multi.addOutput(frontOut); newFrontPhotoOutput = frontOut }
 
@@ -136,9 +140,6 @@ final class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDele
                 }
 
                 let output = AVCapturePhotoOutput()
-                if #available(iOS 16.0, *) {
-                    output.maxPhotoDimensions = CMVideoDimensions(width: 4032, height: 3024)
-                }
                 if session.canAddOutput(output) {
                     session.addOutput(output)
                     newBackPhotoOutput = output
