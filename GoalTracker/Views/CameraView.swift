@@ -54,7 +54,6 @@ struct CameraView: View {
                 .ignoresSafeArea()
 
             // Picture-in-picture style small preview (placeholder)
-            // TODO: Replace with a true front-camera or multicam session when available.
             PreviewView(session: camera.session)
                 .frame(width: 140, height: 220)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
