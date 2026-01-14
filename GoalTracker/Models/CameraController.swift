@@ -101,6 +101,8 @@ class CameraController: UIViewController {
 }
 
 // Turn capture into a UIImage (photo)
+// MARK: Capture variable for feed
+// TODO
 extension CameraController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let data = photo.fileDataRepresentation() else {
