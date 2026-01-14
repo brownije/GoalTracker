@@ -20,10 +20,10 @@ class CameraController: UIViewController {
     
     // Shutter button (camera)
     private let shutterButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 210))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         // Looks
         button.layer.cornerRadius = 50
-        button.layer.borderWidth = 3
+        button.layer.borderWidth = 5
         button.layer.borderColor = UIColor.white.cgColor
         
         return button
