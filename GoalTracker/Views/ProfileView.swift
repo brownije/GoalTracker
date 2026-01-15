@@ -34,6 +34,7 @@ struct ProfileView: View {
             await getInitialProfile()
         }
     }
+    
     func getInitialProfile() async {
         // Backend handling
         print("Getting profile...")
@@ -43,4 +44,8 @@ struct ProfileView: View {
         // MARK: TODO: Add pfp func
         print("Updating profile...")
     }
+}
+
+#Preview {
+    ProfileView()
 }
