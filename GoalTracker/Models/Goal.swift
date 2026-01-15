@@ -5,7 +5,7 @@
 //  Created by Joshua Browning on 12/31/25.
 //
 
-import SwiftUI
+import Foundation
 
 struct Goal: Hashable, Identifiable {
     let id: UUID // Unique Identifier
