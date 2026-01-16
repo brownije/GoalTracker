@@ -52,15 +52,6 @@ struct AuthView: View {
         }
       }
     }
-//    .onOpenURL(perform: { url in
-//      Task {
-//        do {
-//          try await supabase.auth.session(from: url)
-//        } catch {
-//          self.result = .failure(error)
-//        }
-//      }
-//    })
   }
 
   func signInButtonTapped() {
