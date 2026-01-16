@@ -11,6 +11,7 @@ import Supabase
 
 struct AuthView: View {
   @State var email = ""
+  @State var password = ""
   @State var isLoading = false
   @State var result: Result<Void, Error>?
 
@@ -22,6 +23,13 @@ struct AuthView: View {
           .textInputAutocapitalization(.never)
           .autocorrectionDisabled()
       }
+        
+        Section {
+            TextField("Password", text: $password)
+                .textContentType(.password)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+        }
 
       Section {
         Button("Sign in") {
@@ -44,15 +52,15 @@ struct AuthView: View {
         }
       }
     }
-    .onOpenURL(perform: { url in
-      Task {
-        do {
-          try await supabase.auth.session(from: url)
-        } catch {
-          self.result = .failure(error)
-        }
-      }
-    })
+//    .onOpenURL(perform: { url in
+//      Task {
+//        do {
+//          try await supabase.auth.session(from: url)
+//        } catch {
+//          self.result = .failure(error)
+//        }
+//      }
+//    })
   }
 
   func signInButtonTapped() {
@@ -61,9 +69,9 @@ struct AuthView: View {
       defer { isLoading = false }
 
       do {
-        try await supabase.auth.signInWithOTP(
+          try await supabase.auth.signIn(
             email: email,
-            redirectTo: URL(string: "io.supabase.user-management://login-callback")
+            password: "password"
         )
         result = .success(())
       } catch {
@@ -71,4 +79,8 @@ struct AuthView: View {
       }
     }
   }
+}
+
+#Preview {
+    AuthView()
 }
