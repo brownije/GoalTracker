@@ -37,7 +37,7 @@ struct AuthView: View {
         Section {
           switch result {
           case .success:
-            Text("Check your inbox.")
+            Text("Verify your email.")
           case .failure(let error):
             Text(error.localizedDescription).foregroundStyle(.red)
           }

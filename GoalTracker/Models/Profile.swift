@@ -5,18 +5,16 @@
 //  Created by Joshua Browning on 1/14/26.
 //
 
-import Foundation
+struct Profile: Codable {
+  let username: String?
+  let fullName: String?
+  let website: String?
+  let avatarURL: String?
 
-struct Profile: Codable, Identifiable {
-    let id: UUID
-    var username: String
-    var password: String
-    var fullName: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case username
-        case password
-        case fullName = "Joshua Browning"
-    }
+  enum CodingKeys: String, CodingKey {
+    case username
+    case fullName = "full_name"
+    case website
+    case avatarURL = "avatar_url"
+  }
 }
