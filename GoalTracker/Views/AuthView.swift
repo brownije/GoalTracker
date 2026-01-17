@@ -29,6 +29,7 @@ struct AuthView: View {
                 .textContentType(.password)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                // TODO implement password login
         }
 
       Section {
