@@ -30,6 +30,7 @@ struct AuthView: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 // TODO implement password login
+            // Supabase data security
         }
 
       Section {
