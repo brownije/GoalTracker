@@ -22,6 +22,7 @@ struct AuthView: View {
           .textContentType(.emailAddress)
           .textInputAutocapitalization(.never)
           .autocorrectionDisabled()
+          // Email 
       }
         
         Section {
