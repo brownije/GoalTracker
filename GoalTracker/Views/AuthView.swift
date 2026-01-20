@@ -23,6 +23,7 @@ struct AuthView: View {
           .textInputAutocapitalization(.never)
           .autocorrectionDisabled()
           // Email field
+          // Daily commit
       }
         
         Section {
