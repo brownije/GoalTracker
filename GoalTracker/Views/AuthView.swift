@@ -30,6 +30,7 @@ struct AuthView: View {
                 .textContentType(.password)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+            // Password section for sign in
         }
 
       Section {
