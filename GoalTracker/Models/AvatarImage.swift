@@ -14,6 +14,7 @@ struct AvatarImage: Transferable, Equatable {
 
   static var transferRepresentation: some TransferRepresentation {
     DataRepresentation(importedContentType: .image) { data in
+        // Error handling
       guard let image = AvatarImage(data: data) else {
         throw TransferError.importFailed
       }
