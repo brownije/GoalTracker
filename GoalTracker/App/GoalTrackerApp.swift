@@ -10,7 +10,7 @@ import Supabase
 
 @main
 struct GoalTrackerApp: App {
-    
+    // Authentication (password)
     @State var isAuthenticated = false
     
     var body: some Scene {
